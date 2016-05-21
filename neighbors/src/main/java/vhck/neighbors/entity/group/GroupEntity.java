@@ -17,11 +17,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import vhck.neighbors.entity.UserEntity;
-import vhck.neighbors.entity.message.RecipientInterface;
-import vhck.neighbors.entity.message.SenderInterface;
 
 @MappedSuperclass
-public abstract class GroupEntity implements Serializable, RecipientInterface, SenderInterface {
+public abstract class GroupEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id

@@ -1,4 +1,4 @@
-package vhck.neighbors.resources;
+package vhck.neighbors.jersey.resources;
 
 import java.net.URI;
 

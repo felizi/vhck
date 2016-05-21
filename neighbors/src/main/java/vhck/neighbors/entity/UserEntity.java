@@ -12,12 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import vhck.neighbors.entity.message.RecipientInterface;
-import vhck.neighbors.entity.message.SenderInterface;
-
 @Entity
 @Table(name = "user")
-public class UserEntity implements Serializable, SenderInterface, RecipientInterface {
+public class UserEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -28,22 +25,22 @@ public class UserEntity implements Serializable, SenderInterface, RecipientInter
 
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "email", unique = true)
 	private String email;
-	
+
 	@Column(name = "password")
 	private String password;
 
 	protected UserEntity() {
 	}
-	
+
 	public UserEntity(String name, String email) {
 		this();
 		this.name = name;
 		this.email = email;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -77,14 +74,14 @@ public class UserEntity implements Serializable, SenderInterface, RecipientInter
 	}
 
 	public String encriptarPassword(String password) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("MD5");
-            digest.update(password.getBytes());
-            BigInteger bi = new BigInteger(1, digest.digest());
-            return bi.toString(16);
-            
-        } catch (NoSuchAlgorithmException ns) {
-            return password;
-        }
-    }
+		try {
+			MessageDigest digest = MessageDigest.getInstance("MD5");
+			digest.update(password.getBytes());
+			BigInteger bi = new BigInteger(1, digest.digest());
+			return bi.toString(16);
+
+		} catch (NoSuchAlgorithmException ns) {
+			return password;
+		}
+	}
 }

@@ -21,21 +21,10 @@ public class MessageEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private SenderInterface sender;
-	private RecipientInterface recipient;
-
 	private Date dateTime;
 
 	public Long getId() {
 		return id;
-	}
-
-	public SenderInterface getSender() {
-		return sender;
-	}
-
-	public RecipientInterface getRecipient() {
-		return recipient;
 	}
 
 	public Date getDateTime() {
@@ -44,14 +33,6 @@ public class MessageEntity implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public void setSender(SenderInterface sender) {
-		this.sender = sender;
-	}
-
-	public void setRecipient(RecipientInterface recipient) {
-		this.recipient = recipient;
 	}
 
 	public void setDateTime(Date dateTime) {
