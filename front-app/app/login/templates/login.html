@@ -8,15 +8,15 @@
     </div>
     <div class="list padding">
       <label class="item item-input">
-        <input name="email" type="email" placeholder="E-Mail" ng-model="ctrl.user.email">
+        <input type="text" placeholder="Username" ng-model="user.username">
       </label>
       <label class="item item-input">
-        <input name="password" type="password" placeholder="Password" ng-model="ctrl.user.password">
+        <input type="password" placeholder="Password" ng-model="user.password">
       </label>
     </div>
     <div class="padding">
       <button class="button button-block button-assertive"
-        ng-click="ctrl.signin()">
+        ng-click="authUser()">
         Sign in
       </button>
     </div>
