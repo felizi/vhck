@@ -13,6 +13,9 @@
 # ionic fonts
 /app/main/assets/fonts/
 
+# local images
+/app/main/assets/images/
+
 # cordova
 /platforms/
 /plugins/
