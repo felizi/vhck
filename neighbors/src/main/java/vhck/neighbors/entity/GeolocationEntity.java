@@ -1,20 +1,25 @@
 package vhck.neighbors.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.Embeddable;
 
-@Entity
-@Table(name = "geolocation")
+@Embeddable
 public class GeolocationEntity {
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	private Long latitude;
-	private Long longitude;
+	private double latitude;
+	private double longitude;
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
 }
