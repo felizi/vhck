@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
-import vhck.neighbors.entity.GroupEntity;
+import vhck.neighbors.entity.group.GroupEntity;
 
 @Stateless
 public class GroupDAO extends Persistence{

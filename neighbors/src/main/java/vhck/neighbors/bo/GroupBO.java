@@ -6,7 +6,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import vhck.neighbors.dao.GroupDAO;
-import vhck.neighbors.entity.GroupEntity;
+import vhck.neighbors.entity.group.GroupEntity;
 
 @Stateless
 public class GroupBO {

@@ -6,7 +6,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import vhck.neighbors.dao.ChannelDAO;
-import vhck.neighbors.entity.ChannelEntity;
+import vhck.neighbors.entity.group.ChannelEntity;
 
 @Stateless
 public class ChannelBO {
