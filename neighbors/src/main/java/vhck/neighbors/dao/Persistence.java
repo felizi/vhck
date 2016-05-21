@@ -1,4 +1,4 @@
-package br.com.neighbors.dao;
+package vhck.neighbors.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

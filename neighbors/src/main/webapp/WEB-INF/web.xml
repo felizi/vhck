@@ -3,7 +3,17 @@
 	version="3.0"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 	<display-name>neighbors</display-name>
+	
+	<servlet>
+		<servlet-name>vhck.neighbors.resources.ApplicationJAXRS</servlet-name>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>vhck.neighbors.resources.ApplicationJAXRS</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
 
+<!-- 
 	<servlet>
 		<servlet-name>jersey-serlvet</servlet-name>
 		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
@@ -13,12 +23,12 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-
+ 
 	<servlet-mapping>
 		<servlet-name>jersey-serlvet</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
-
+-->
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>

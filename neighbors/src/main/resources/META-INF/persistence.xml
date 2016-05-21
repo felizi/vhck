@@ -14,7 +14,7 @@
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.connection.charSet" value="UTF-8" />
 			<property name="hibernate.transaction.flush_before_completion" value="true" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 
 			<!-- C3P0 -->
 			<property name="hibernate.c3p0.min_size" value="5" />
