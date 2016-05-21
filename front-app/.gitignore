@@ -19,7 +19,7 @@
 /res/*/current/
 
 # build folder
-/www/**
+/www/
 
 # IDE
 *.sublime-project
