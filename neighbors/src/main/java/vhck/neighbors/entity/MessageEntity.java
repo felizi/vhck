@@ -1,8 +1,23 @@
 package vhck.neighbors.entity;
 
-import javax.persistence.Entity;
+import java.io.Serializable;
 
-@Entity(name = "message")
-public class MessageEntity {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "message")
+public class MessageEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 }
