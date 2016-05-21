@@ -1,0 +1,26 @@
+{
+  "generator-m-ionic": {
+    "answers": {
+      "appName": "social_network",
+      "appId": "com.social.network",
+      "ionicCss": false,
+      "bowerPackages": [
+        "angular-dynamic-locale#~0.1.27",
+        "angular-translate#~2.11.0",
+        "localforage#~1.4.0"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "plugins": [
+        "cordova-plugin-device",
+        "cordova-plugin-network-information",
+        "cordova-plugin-statusbar"
+      ],
+      "appModule": "social_network",
+      "ecosystems": [
+        "ionic-platform"
+      ]
+    }
+  }
+}
