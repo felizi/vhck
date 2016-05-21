@@ -7,14 +7,19 @@ import javax.inject.Inject;
 
 import vhck.neighbors.dao.UserDAO;
 import vhck.neighbors.entity.UserEntity;
+import vhck.neighbors.exception.EmailAlreadyRegisteredException;
 
 @Stateless
 public class UserBO {
 
 	@Inject private UserDAO userDAO;
 	
-	public void include(UserEntity user) {
-		userDAO.include(user);
+	public void include(UserEntity user) throws EmailAlreadyRegisteredException {
+		if(userDAO.findByEmail(user.getEmail()) != null) {
+			userDAO.include(user);
+		} else {
+			throw new EmailAlreadyRegisteredException();
+		}
 	}
 	
 	public void change(UserEntity user){
