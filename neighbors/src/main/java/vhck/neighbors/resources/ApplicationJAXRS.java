@@ -1,4 +1,4 @@
-package vhck.neighbors.resources;
+/*package vhck.neighbors.resources;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,3 +14,4 @@ public class ApplicationJAXRS extends Application {
 		return classes;
 	}
 }
+*/
