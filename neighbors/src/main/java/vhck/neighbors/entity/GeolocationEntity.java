@@ -1,7 +1,5 @@
 package vhck.neighbors.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,14 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "message")
-public class MessageEntity implements Serializable {
-
-	private static final long serialVersionUID = 1L;
-
+@Table(name = "geolocation")
+public class GeolocationEntity {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
+	private Long latitude;
+	private Long longitude;
 }

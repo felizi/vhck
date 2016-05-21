@@ -1,6 +1,7 @@
 package vhck.neighbors.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,5 +20,11 @@ public class BuildEntity implements Serializable {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	private UserEntity owner;
+	private List<UserEntity> landlord;
+	private String name;
+
+	private GeolocationEntity geolocation;
 
 }

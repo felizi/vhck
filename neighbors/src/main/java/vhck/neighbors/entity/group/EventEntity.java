@@ -1,6 +1,4 @@
-package vhck.neighbors.entity;
-
-import java.io.Serializable;
+package vhck.neighbors.entity.group;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,15 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "channel")
-public class ChannelEntity implements Serializable {
+import vhck.neighbors.entity.GeolocationEntity;
 
+@Entity
+@Table(name = "event")
+public class EventEntity extends GroupEntity {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
+	private GeolocationEntity geolocation;
 }
