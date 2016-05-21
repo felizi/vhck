@@ -18,13 +18,13 @@ import com.google.gson.reflect.TypeToken;
 
 @Path("auth")
 public class AuthResource {
-	/*@POST
+	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response login(String usernamePasswordJson) {
-		Map<String, Object> usernamePasswordMap = new Gson().fromJson(usernamePasswordJson, new TypeToken<HashMap<String, Object>>() {
+		Map<Object, Object> usernamePasswordMap = new Gson().fromJson(usernamePasswordJson, new TypeToken<HashMap<Object, Object>>() {
 		}.getType());
 		return Response.status(HttpServletResponse.SC_OK).entity(usernamePasswordMap).build();
-	}*/
+	}
 
 	@GET
 	@Path("/info/{token}")
