@@ -54,4 +54,8 @@ public class UserBO {
 	public List<UserEntity> findAllUserByBuild(BuildEntity buildEntity) {
 		return userDAO.findAllUserByBuild(buildEntity);
 	}
+	
+	public List<UserEntity> findAllUserLandlordOfBuild(BuildEntity buildEntity) {
+		return userDAO.findAllUserLandlordOfBuild(buildEntity);
+	}
 }

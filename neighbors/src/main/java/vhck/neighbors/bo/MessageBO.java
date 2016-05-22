@@ -40,4 +40,8 @@ public class MessageBO {
 	public List<MessageEntity> findAll() {
 		return messageDAO.findAll();
 	}
+	
+	public void sendMessage() {
+		
+	}
 }
