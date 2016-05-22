@@ -19,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -58,6 +59,10 @@ public class OccurrenceEntity implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date_update")
 	private Date dateUpdate;
+
+	@ManyToOne
+	@JoinColumn(name = "id_build", referencedColumnName = "id")
+	private BuildEntity build;
 
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
@@ -157,6 +162,14 @@ public class OccurrenceEntity implements Serializable {
 
 	public OccurrenceTypeEnum getOccurrenceType() {
 		return occurrenceType;
+	}
+
+	public BuildEntity getBuild() {
+		return build;
+	}
+
+	public void setBuild(BuildEntity build) {
+		this.build = build;
 	}
 
 	@Override
