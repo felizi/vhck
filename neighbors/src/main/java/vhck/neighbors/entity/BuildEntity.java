@@ -39,6 +39,9 @@ public class BuildEntity implements Serializable {
 	@JoinColumn(name = "id_user_owner", referencedColumnName = "id")
 	private UserEntity userOwner;
 
+	@OneToMany(mappedBy = "build", fetch = FetchType.LAZY)
+	private List<ChannelEntity> channels;
+	
 	public BuildEntity() {
 		super();
 	}

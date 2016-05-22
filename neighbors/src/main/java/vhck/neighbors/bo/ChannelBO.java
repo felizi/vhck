@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import vhck.neighbors.dao.ChannelDAO;
+import vhck.neighbors.entity.BuildEntity;
 import vhck.neighbors.entity.ChannelEntity;
 
 @Stateless
@@ -39,5 +40,9 @@ public class ChannelBO {
 	
 	public List<ChannelEntity> findAll() {
 		return channelDAO.findAll();
+	}
+	
+	public List<ChannelEntity> findAllChannelsByBuild(BuildEntity buildEntity) {
+		return channelDAO.findAllChannelsByBuild(buildEntity);
 	}
 }

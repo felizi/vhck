@@ -42,6 +42,9 @@ public class UserEntity implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private List<UserBuildEntity> userBuild;
 
+	@OneToMany(mappedBy = "userOwner", fetch = FetchType.LAZY)
+	private List<ChannelEntity> channels;
+	
 	protected UserEntity() {
 		super();
 	}

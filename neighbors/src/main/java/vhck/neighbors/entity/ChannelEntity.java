@@ -1,7 +1,9 @@
 package vhck.neighbors.entity;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,12 +16,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import vhck.neighbors.enums.PrivacyEnum;
+import vhck.neighbors.jersey.translator.constants.BasicConstants;
 
 @Entity
 @Table(name = "channel")
@@ -35,14 +38,25 @@ public class ChannelEntity implements Serializable {
 	@NotNull
 	@Column(name = "name", nullable = false, length = 255)
 	private String name;
+	
+//	@ManyToOne
+//	@JoinColumns({
+//		@JoinColumn(name = "id_user_owner", referencedColumnName = "id_user"),
+//		@JoinColumn(name = "id_build", referencedColumnName = "id_build")})
+//	private UserBuildEntity owner;
+	
+	@ManyToOne
+    @JoinColumn(name = "id_user_owner", referencedColumnName = "id")
+    private UserEntity userOwner;
 
-	@OneToOne
-	@JoinColumn(name = "id_owner")
-	private UserEntity owner;
-
+	@ManyToOne
+    @JoinColumn(name = "id_build", referencedColumnName = "id")
+	private BuildEntity build;
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "channel_member", joinColumns = @JoinColumn(name = "channel_id"), 
-				inverseJoinColumns = {@JoinColumn(name = "id_user", referencedColumnName = "id_user"), @JoinColumn(name="id_build", referencedColumnName = "id_build")})
+				inverseJoinColumns = {@JoinColumn(name = "id_user", referencedColumnName = "id_user"), 
+									  @JoinColumn(name= " id_build", referencedColumnName = "id_build")})
 	private List<UserBuildEntity> members;
 
 	@Enumerated(EnumType.STRING)
@@ -56,9 +70,10 @@ public class ChannelEntity implements Serializable {
 		this.privacy = PrivacyEnum.PUBLIC;
 	}
 
-	public ChannelEntity(String name, UserEntity owner) {
+	public ChannelEntity(String name, UserBuildEntity owner) {
 		this.name = name;
-		this.owner = owner;
+		this.userOwner = owner.getUser();
+		this.build = owner.getBuild();
 	}
 	
 	public Long getId() {
@@ -77,12 +92,20 @@ public class ChannelEntity implements Serializable {
 		this.name = name;
 	}
 
-	public UserEntity getOwner() {
-		return owner;
+	public UserEntity getUserOwner() {
+		return userOwner;
 	}
 
-	public void setOwner(UserEntity owner) {
-		this.owner = owner;
+	public void setUserOwner(UserEntity userOwner) {
+		this.userOwner = userOwner;
+	}
+
+	public BuildEntity getBuild() {
+		return build;
+	}
+
+	public void setBuild(BuildEntity build) {
+		this.build = build;
 	}
 
 	public List<UserBuildEntity> getMembers() {
@@ -109,6 +132,13 @@ public class ChannelEntity implements Serializable {
 		this.messagesRoutes = messagesRoutes;
 	}
 
+	public Map<String, Object> toMap() {
+		Map<String, Object> map = new HashMap<>();
+		map.put(BasicConstants.ID, this.getId());
+		map.put(BasicConstants.NAME, this.getName());
+		return map;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

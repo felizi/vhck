@@ -3,7 +3,9 @@ package vhck.neighbors.dao;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
+import vhck.neighbors.entity.BuildEntity;
 import vhck.neighbors.entity.ChannelEntity;
 
 @Stateless
@@ -37,4 +39,11 @@ public class ChannelDAO extends Persistence{
 	public List<ChannelEntity> findAll() {
     	return em.createQuery("FROM ChannelEntity ce").getResultList();
     }
+	
+	public List<ChannelEntity> findAllChannelsByBuild(BuildEntity buildEntity) {
+		Query q = em.createQuery("SELECT ce FROM ChannelEntity ce WHERE ce.build = :pBuild");
+		q.setParameter("pBuild", buildEntity);
+		
+		return q.getResultList();
+	}
 }
