@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
+import vhck.neighbors.entity.BuildEntity;
 import vhck.neighbors.entity.UserEntity;
 
 @Stateless
@@ -46,9 +47,15 @@ public class UserDAO extends Persistence{
 	        q.setParameter("pEmail", email);
 	        
 	        return (UserEntity) q.getSingleResult();
-	        
     	} catch (NoResultException nre) {
             return null;
         }
     }
+	
+	public List<UserEntity> findAllUserByBuild(BuildEntity buildEntity) {
+		Query q = em.createQuery("SELECT ube.user FROM UserBuildEntity ube WHERE ube.build = :pBuild");
+		q.setParameter("pBuild", buildEntity);
+		
+		return q.getResultList();
+	}
 }

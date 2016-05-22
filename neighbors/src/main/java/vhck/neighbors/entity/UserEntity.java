@@ -1,9 +1,6 @@
 package vhck.neighbors.entity;
 
 import java.io.Serializable;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import vhck.neighbors.utilities.Encryptor;
 
 @Entity
 @Table(name = "user")
@@ -78,7 +77,7 @@ public class UserEntity implements Serializable {
 	}
 
 	public void setPassword(String password) {
-		this.password = this.encriptarPassword(password);
+		this.password = Encryptor.encryptForMD5(password);
 	}
 
 	public List<UserBuildEntity> getUserBuild() {
@@ -87,17 +86,5 @@ public class UserEntity implements Serializable {
 
 	public void setUserBuild(List<UserBuildEntity> userBuild) {
 		this.userBuild = userBuild;
-	}
-
-	public String encriptarPassword(String password) {
-		try {
-			MessageDigest digest = MessageDigest.getInstance("MD5");
-			digest.update(password.getBytes());
-			BigInteger bi = new BigInteger(1, digest.digest());
-			return bi.toString(16);
-
-		} catch (NoSuchAlgorithmException ns) {
-			return password;
-		}
 	}
 }

@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import vhck.neighbors.dao.UserDAO;
+import vhck.neighbors.entity.BuildEntity;
 import vhck.neighbors.entity.UserEntity;
 import vhck.neighbors.exception.EmailAlreadyRegisteredException;
 
@@ -15,7 +16,7 @@ public class UserBO {
 	@Inject private UserDAO userDAO;
 	
 	public void include(UserEntity user) throws EmailAlreadyRegisteredException {
-		if(userDAO.findByEmail(user.getEmail()) == null) {
+		if(this.findByEmail(user.getEmail()) == null) {
 			userDAO.include(user);
 		} else {
 			throw new EmailAlreadyRegisteredException();
@@ -44,5 +45,13 @@ public class UserBO {
 	
 	public List<UserEntity> findAll() {
 		return userDAO.findAll();
+	}
+	
+	public UserEntity findByEmail(String email){
+		return userDAO.findByEmail(email);
+	}
+	
+	public List<UserEntity> findAllUserByBuild(BuildEntity buildEntity) {
+		return userDAO.findAllUserByBuild(buildEntity);
 	}
 }

@@ -1,9 +1,6 @@
 package vhck.neighbors.jersey.resources;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletResponse;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -13,18 +10,29 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import vhck.neighbors.exception.PasswordInvalidException;
+import vhck.neighbors.exception.UserNotFoundException;
+import vhck.neighbors.jersey.interpreter.UserInterpreter;
 
 @Path("auth")
 public class AuthResource {
+	
+	@Inject private UserInterpreter userInterpreter;
+	
 	@POST
 	@Path("/login")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response login(String usernamePasswordJson) {
-		Map<Object, Object> usernamePasswordMap = new Gson().fromJson(usernamePasswordJson, new TypeToken<HashMap<Object, Object>>() {
-		}.getType());
-		return Response.status(HttpServletResponse.SC_OK).entity("Olá " + usernamePasswordMap.get("username")).build();
+	public Response autenticate(String contentRequest) {
+		
+		try {
+			userInterpreter.authenticate(contentRequest);
+		} catch (PasswordInvalidException e) {
+			return Response.status(Response.Status.UNAUTHORIZED).entity("Password Invalid").type(MediaType.TEXT_PLAIN).build();
+		} catch (UserNotFoundException e) {
+			return Response.status(Response.Status.UNAUTHORIZED).entity("User not Found").type(MediaType.TEXT_PLAIN).build();
+		}
+		
+		return Response.ok().build();
 	}
 
 	@GET
@@ -33,4 +41,10 @@ public class AuthResource {
 	public Response getUserByToken(@PathParam("token") Integer token) {
 		return Response.ok().entity("ok" + token).build();
 	}
+	
+//	@XmlRootElement
+//	public class DataAutentication {
+//	    @XmlElement public String email;
+//	    @XmlElement public String password;
+//	}
 }
