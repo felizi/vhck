@@ -32,7 +32,7 @@ angular.module('main', [
         }
       })
       .state('home.leaveComment', {
-        url: '/cards/leaveComment',
+        url: '/cards/leaveComment/:cardId/:cardType/:cardTitle',
         views: {
           'pageContent': {
             templateUrl: 'home/templates/leaveComment.html',
