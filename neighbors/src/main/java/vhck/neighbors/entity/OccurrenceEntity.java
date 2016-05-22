@@ -62,10 +62,9 @@ public class OccurrenceEntity implements Serializable {
 	@Column(name = "description", length = 4000)
 	private String description;
 
-	@OneToMany(mappedBy = "eventRecipient", fetch = FetchType.LAZY)
-	private List<MessageEntity> messages;
+	@OneToMany(mappedBy = "occurrenceEntity", fetch = FetchType.LAZY)
+	private List<MessageRoutesEntity> messagesRoutes;
 
-	@Column(name = "flame")
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "occurrence_flame", joinColumns = { @JoinColumn(name = "occurrence_id") }, inverseJoinColumns = { @JoinColumn(name = "flame_id") })
 	private List<FlameEntity> flames;
@@ -105,16 +104,12 @@ public class OccurrenceEntity implements Serializable {
 		this.description = description;
 	}
 
-	public List<MessageEntity> getMessages() {
-		return messages;
+	public List<MessageRoutesEntity> getMessagesRoutes() {
+		return messagesRoutes;
 	}
 
-	public void setMessages(List<MessageEntity> messages) {
-		this.messages = messages;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setMessagesRoutes(List<MessageRoutesEntity> messagesRoutes) {
+		this.messagesRoutes = messagesRoutes;
 	}
 
 	public Date getCreation() {

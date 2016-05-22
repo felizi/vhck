@@ -32,7 +32,6 @@ public class FlameEntity implements Serializable {
 	@Column(name = "creation")
 	private Date creation;
 
-	@Column(name = "user")
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "flame_user", joinColumns = { @JoinColumn(name = "flame_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
 	private List<UserEntity> userList;

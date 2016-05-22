@@ -72,9 +72,8 @@ public class EventEntity implements Serializable {
 	private String description;
 
 	@OneToMany(mappedBy = "eventRecipient", fetch = FetchType.LAZY)
-	private List<MessageEntity> messages;
+	private List<MessageRoutesEntity> messagesRoutes;
 
-	@Column(name = "flame")
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "event_flame", joinColumns = { @JoinColumn(name = "event_id") }, inverseJoinColumns = { @JoinColumn(name = "flame_id") })
 	private List<FlameEntity> flames;
@@ -146,12 +145,12 @@ public class EventEntity implements Serializable {
 		this.description = description;
 	}
 
-	public List<MessageEntity> getMessages() {
-		return messages;
+	public List<MessageRoutesEntity> getMessagesRoutes() {
+		return messagesRoutes;
 	}
 
-	public void setMessages(List<MessageEntity> messages) {
-		this.messages = messages;
+	public void setMessagesRoutes(List<MessageRoutesEntity> messagesRoutes) {
+		this.messagesRoutes = messagesRoutes;
 	}
 
 	public EventTypeEnum getEventType() {

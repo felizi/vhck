@@ -50,7 +50,7 @@ public class ChannelEntity implements Serializable {
 	private PrivacyEnum privacy;
 	
 	@OneToMany(mappedBy = "channelRecipient", fetch = FetchType.LAZY)
-	private List<MessageEntity> messages;
+	private List<MessageRoutesEntity> messagesRoutes;
 	
 	public ChannelEntity() {
 	}
@@ -95,12 +95,12 @@ public class ChannelEntity implements Serializable {
 		this.privacy = privacy;
 	}
 
-	public List<MessageEntity> getMessages() {
-		return messages;
+	public List<MessageRoutesEntity> getMessagesRoutes() {
+		return messagesRoutes;
 	}
 
-	public void setMessages(List<MessageEntity> messages) {
-		this.messages = messages;
+	public void setMessagesRoutes(List<MessageRoutesEntity> messagesRoutes) {
+		this.messagesRoutes = messagesRoutes;
 	}
 
 	@Override
