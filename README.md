@@ -21,3 +21,6 @@ We learned that our PCs should never know when we are in a hurry. :P Also develo
 
 ## What's next for Neighbors social app
 We've heard about Mike Moll idea of creating a social network for people that live in the same building, so they can interact with each other using the app, but we turned it into an app that doesn't wait for the user to use it but suggest the interactions between users. For now the social network is being created, but in next episodes scenes you might see some AI, minering throw all the data storaged and suggesting when somebody isn't being that social to interacte with someone, or to a group to make a party. Think about the possibilities... It might be amazing!
+
+## Our team
+![alt tag](https://raw.githubusercontent.com/felizi/vhck/master/team/team.jpg)
