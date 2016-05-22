@@ -16,6 +16,21 @@ angular.module('main', [
       templateUrl: 'login/templates/login.html',
       controller: 'LoginController as loginCtrl'
     })
+    .state('home', {
+      url: '/home',
+      abstract: true,
+      templateUrl: 'home/templates/home.html',
+      controller: 'HomeController as homeCtrl'
+    })
+      .state('home.cards', {
+        url: '/cards',
+        views: {
+          'pageContent': {
+            templateUrl: 'home/templates/cards.html',
+            controller: 'CardsController as cardsCtrl'
+          }
+        }
+      })
     .state('main', {
       url: '/main',
       abstract: true,
@@ -49,4 +64,6 @@ angular.module('main', [
           }
         }
       });
+}).config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  $ionicConfigProvider.navBar.alignTitle('center');
 });
