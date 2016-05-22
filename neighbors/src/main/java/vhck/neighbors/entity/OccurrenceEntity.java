@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +22,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import vhck.neighbors.enums.OccurrenceTypeEnum;
+
 @Entity
 @Table(name = "occurrence")
 public class OccurrenceEntity implements Serializable {
@@ -30,6 +34,10 @@ public class OccurrenceEntity implements Serializable {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "occurrence")
+	private OccurrenceTypeEnum occurrenceType;
 
 	@NotNull
 	@Column(name = "name", nullable = false, length = 255)

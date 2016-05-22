@@ -24,18 +24,23 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import vhck.neighbors.enums.EventTypeEnum;
 import vhck.neighbors.enums.PrivacyEnum;
 
 @Entity
 @Table(name = "event")
 public class EventEntity implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "event")
+	private EventTypeEnum eventType;
 
 	@NotNull
 	@Column(name = "name", nullable = false, length = 255)
@@ -46,26 +51,29 @@ public class EventEntity implements Serializable {
 	private UserEntity owner;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "event_member", joinColumns = @JoinColumn(name = "group_id"), 
-			   inverseJoinColumns = {@JoinColumn(name = "id_user", referencedColumnName = "id_user"), @JoinColumn(name="id_build", referencedColumnName = "id_build")})
+	@JoinTable(name = "event_member", joinColumns = @JoinColumn(name = "group_id"), inverseJoinColumns = { @JoinColumn(name = "id_user", referencedColumnName = "id_user"), @JoinColumn(name = "id_build", referencedColumnName = "id_build") })
 	private List<UserBuildEntity> members;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "privacy")
 	private PrivacyEnum privacy;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "date_time")
-	private Date dateTime;
-	
+	@Column(name = "creation")
+	private Date creation;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "update")
+	private Date update;
+
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
-	@Column(name="description", length = 4000)
+	@Column(name = "description", length = 4000)
 	private String description;
-	
+
 	@OneToMany(mappedBy = "eventRecipient", fetch = FetchType.LAZY)
 	private List<MessageEntity> messages;
-	
+
 	public EventEntity() {
 	}
 
@@ -109,12 +117,20 @@ public class EventEntity implements Serializable {
 		this.privacy = privacy;
 	}
 
-	public Date getDateTime() {
-		return dateTime;
+	public Date getCreation() {
+		return creation;
 	}
 
-	public void setDateTime(Date dateTime) {
-		this.dateTime = dateTime;
+	public Date getUpdate() {
+		return update;
+	}
+
+	public void setCreation(Date creation) {
+		this.creation = creation;
+	}
+
+	public void setUpdate(Date update) {
+		this.update = update;
 	}
 
 	public String getDescription() {
@@ -124,7 +140,7 @@ public class EventEntity implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	public List<MessageEntity> getMessages() {
 		return messages;
 	}
