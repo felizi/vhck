@@ -40,36 +40,24 @@ public class MessageEntity implements Serializable {
 	@Column(name = "message", length = 4000)
 	private String message;
 
-	protected MessageEntity() {
-	}
-
-	public MessageEntity(UserBuildEntity sender, EventEntity recipient) {
-		this();
-		this.sender = sender;
-		this.eventRecipient = recipient;
-	@Lob
-	@Basic(fetch = FetchType.LAZY)
-	@Column(name="description", length = 4000)
-	private String message;
-	
 	@OneToOne
     @PrimaryKeyJoinColumn
     private MessageRoutesEntity messageRoutes;
 	
 	public MessageEntity() {
-		this.dateTime = new Date();
+		this.dateCreation = new Date();
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
 
-	public Date getDateCreation() {
-		return dateCreation;
-	}
-
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Date getDateCreation() {
+		return dateCreation;
 	}
 
 	public void setDateCreation(Date dateCreation) {
@@ -82,6 +70,14 @@ public class MessageEntity implements Serializable {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public MessageRoutesEntity getMessageRoutes() {
+		return messageRoutes;
+	}
+
+	public void setMessageRoutes(MessageRoutesEntity messageRoutes) {
+		this.messageRoutes = messageRoutes;
 	}
 
 	@Override
