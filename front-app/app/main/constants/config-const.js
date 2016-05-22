@@ -15,4 +15,8 @@ angular.module('main')
     /*endinject*/
   }
 
+})
+.constant('Cards', {
+  OCCURRENCE: 'OCCURRENCE',
+  EVENTS: 'EVENTS'
 });

@@ -24,12 +24,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-import vhck.neighbors.enums.EventTypeEnum;
-import vhck.neighbors.enums.PrivacyEnum;
+import vhck.neighbors.enums.OccurrenceTypeEnum;
 
 @Entity
-@Table(name = "event")
-public class EventEntity implements Serializable {
+@Table(name = "occurrence")
+public class OccurrenceEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,8 +38,8 @@ public class EventEntity implements Serializable {
 	private Long id;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "event")
-	private EventTypeEnum eventType;
+	@Column(name = "occurrence")
+	private OccurrenceTypeEnum occurrenceType;
 
 	@NotNull
 	@Column(name = "name", nullable = false, length = 255)
@@ -49,14 +48,6 @@ public class EventEntity implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "id_owner")
 	private UserEntity owner;
-
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "event_member", joinColumns = @JoinColumn(name = "group_id"), inverseJoinColumns = { @JoinColumn(name = "id_user", referencedColumnName = "id_user"), @JoinColumn(name = "id_build", referencedColumnName = "id_build") })
-	private List<UserBuildEntity> members;
-
-	@Enumerated(EnumType.STRING)
-	@Column(name = "privacy")
-	private PrivacyEnum privacy;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "creation")
@@ -76,10 +67,10 @@ public class EventEntity implements Serializable {
 
 	@Column(name = "flame")
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "event_flame", joinColumns = { @JoinColumn(name = "event_id") }, inverseJoinColumns = { @JoinColumn(name = "flame_id") })
+	@JoinTable(name = "occurrence_flame", joinColumns = { @JoinColumn(name = "occurrence_id") }, inverseJoinColumns = { @JoinColumn(name = "flame_id") })
 	private List<FlameEntity> flames;
 
-	public EventEntity() {
+	public OccurrenceEntity() {
 	}
 
 	public Long getId() {
@@ -106,38 +97,6 @@ public class EventEntity implements Serializable {
 		this.owner = owner;
 	}
 
-	public List<UserBuildEntity> getMembers() {
-		return members;
-	}
-
-	public void setMembers(List<UserBuildEntity> members) {
-		this.members = members;
-	}
-
-	public PrivacyEnum getPrivacy() {
-		return privacy;
-	}
-
-	public void setPrivacy(PrivacyEnum privacy) {
-		this.privacy = privacy;
-	}
-
-	public Date getCreation() {
-		return creation;
-	}
-
-	public Date getUpdate() {
-		return update;
-	}
-
-	public void setCreation(Date creation) {
-		this.creation = creation;
-	}
-
-	public void setUpdate(Date update) {
-		this.update = update;
-	}
-
 	public String getDescription() {
 		return description;
 	}
@@ -154,16 +113,36 @@ public class EventEntity implements Serializable {
 		this.messages = messages;
 	}
 
-	public EventTypeEnum getEventType() {
-		return eventType;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public Date getCreation() {
+		return creation;
+	}
+
+	public void setCreation(Date creation) {
+		this.creation = creation;
+	}
+
+	public OccurrenceTypeEnum getOccurrenceType() {
+		return occurrenceType;
+	}
+
+	public Date getUpdate() {
+		return update;
 	}
 
 	public List<FlameEntity> getFlames() {
 		return flames;
 	}
 
-	public void setEventType(EventTypeEnum eventType) {
-		this.eventType = eventType;
+	public void setOccurrenceType(OccurrenceTypeEnum occurrenceType) {
+		this.occurrenceType = occurrenceType;
+	}
+
+	public void setUpdate(Date update) {
+		this.update = update;
 	}
 
 	public void setFlames(List<FlameEntity> flames) {
@@ -186,7 +165,7 @@ public class EventEntity implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EventEntity other = (EventEntity) obj;
+		OccurrenceEntity other = (OccurrenceEntity) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
