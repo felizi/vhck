@@ -4,38 +4,11 @@
 
     <!-- content goes here -->
     <div>
-      <img src="main/assets/images/grey-wolf-v4.jpg" width="100%" height="280px">
+      <img src="main/assets/images/login_image.png" width="100%" height="280px">
     </div>
-    <form ng-submit="authUser()">
-      <div class="list padding">
-        <label class="item item-input">
-          <input type="text" placeholder="Username" ng-model="user.username">
-        </label>
-        <label class="item item-input">
-          <input type="password" placeholder="Password" ng-model="user.password">
-        </label>
-      </div>
-      <div class="padding">
-        <button class="button button-block button-assertive">
-          Sign in
-        </button>
-      </div>
-    </form>
-    <div class="list padding">
-      <a href="#/register" class="btn btn-default assertive">Oh, I forgot!</a>
-      <a href="#/register" class="btn btn-default assertive">Sign up</a>
-    </div>
+
+    <ion-nav-view name="pageContent"></ion-nav-view>
 
   </ion-content>
 </ion-view>
 
-
-<!-- <ion-view hide-nav-bar="true" class="pane">
-    <ion-content class="login scroll-content  has-header" has-header="false">
-    	<div class="scroll" style="-webkit-transform: translate3d(0px, 0px, 0);"></div>
-    	<div class="scroll-bar scroll-bar-v">
-    		<div class="scroll-bar-indicator scroll-bar-fade-out" style="height: 0px; -webkit-transform: translate3d(0px, 0px, 0px) scaleY(1);">
-    		</div>
-    	</div>
-    </ion-content>
-</ion-view> -->

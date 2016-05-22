@@ -5,7 +5,7 @@ angular.module('main')
     // gulp environment: injects environment vars
     ENV: {
       /*inject-env*/
-      'SERVER_URL': 'http://192.168.25.118:8080/neighbors/rest/'
+      'SERVER_URL': 'http://deb.felizi.net:8090/neighbors/rest/'
       /*endinject*/
     },
 

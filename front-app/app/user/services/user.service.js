@@ -23,4 +23,8 @@ angular.module('main')
     this.logOut = function logOut() {
       this.userData = {};
     };
+
+    this.setBuilding = function setBuilding(building) {
+      this.userData.building = building;
+    }
   });

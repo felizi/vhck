@@ -3,7 +3,7 @@ angular.module('main')
   .controller('HomeController', function($scope, $timeout, $http, Config, $state, UserService) {
     var logOut = function logOut() {
       UserService.logOut();
-      $state.transitionTo('login');
+      $state.go('login.loginContent');
     };
 
     $scope.logOut = logOut;

@@ -8,13 +8,32 @@ angular.module('main', [
   .config(function($stateProvider, $urlRouterProvider) {
 
     // ROUTING with ui.router
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/login/loginContent');
     $stateProvider
     // this state is placed in the <ion-nav-view> in the index.html
       .state('login', {
         url: '/login',
+        abstract: true,
         templateUrl: 'login/templates/login.html',
         controller: 'LoginController as loginCtrl'
+      })
+      .state('login.loginContent', {
+        url: '/loginContent',
+        views: {
+          'pageContent': {
+            templateUrl: 'login/templates/loginContent.html',
+            controller: 'LoginContentController as loginContentCtrl'
+          }
+        }
+      })
+      .state('login.chooseBuilding', {
+        url: '/chooseBuilding',
+        views: {
+          'pageContent': {
+            templateUrl: 'login/templates/chooseBuilding.html',
+            controller: 'ChooseBuildingController as chooseBuildingCtrl'
+          }
+        }
       })
       .state('home', {
         url: '/home',

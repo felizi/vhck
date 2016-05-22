@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.social.network" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>neighbors</name>
+    <icon src="res/android/default/icon.png" platform="android" width="192" height="192" density="xxxhdpi" />
+    <name>Neighbors</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>

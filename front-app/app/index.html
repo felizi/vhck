@@ -9,7 +9,7 @@
     <meta name="format-detection" content="telephone=no"> <!-- no auto telephone linking -->
 
     <meta name="apple-mobile-web-app-capable" content="yes"> <!-- can be saved to home screen on ios -->
-    <title>neighbors</title>
+    <title>Neighbors</title>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <!-- build:css styles/vendor.css -->
@@ -25,12 +25,6 @@
     <!-- endbuild -->
   </head>
   <body ng-app="neighbors">
-
-    <!-- the nav bar will be updated as we navigate between views -->
-    <!-- <ion-nav-bar> can be removed when using sidemenu (contained in menu.html) -->
-    <ion-nav-bar class="bar-balanced">
-      <ion-nav-back-button></ion-nav-back-button>
-    </ion-nav-bar>
     <!-- the current view will be rendered in the <ion-nav-view> directive -->
     <ion-nav-view></ion-nav-view>
 
@@ -64,6 +58,8 @@
     <script src="main/controllers/debug-ctrl.js"></script>
     <script src="main/constants/config-const.js"></script>
     <script src="login/controllers/login.controller.js"></script>
+    <script src="login/controllers/login.content.controller.js"></script>
+    <script src="login/controllers/chooseBuilding.controller.js"></script>
     <script src="home/controllers/occurrence.controller.js"></script>
     <script src="home/controllers/leave.comment.controller.js"></script>
     <script src="home/controllers/home.controller.js"></script>
