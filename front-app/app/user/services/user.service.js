@@ -1,26 +1,26 @@
 'use strict';
 angular.module('main')
-.service('UserService', function () {
-  
-  this.userData = {};
+  .service('UserService', function() {
 
-  this.setUserData = function setUserData(userData) {
-  	this.userData = userData;
-  };
+    this.userData = {};
 
-  this.getId = function getId() {
-  	return this.userData.id;
-  };
+    this.setUserData = function setUserData(userData) {
+      this.userData = userData;
+    };
 
-  this.getName = function getName() {
-  	return this.userData.name;
-  };
+    this.getId = function getId() {
+      return this.userData.id;
+    };
 
-  this.getEmail = function getEmail() {
-  	return this.userData.email;
-  };
+    this.getName = function getName() {
+      return this.userData.name;
+    };
 
-  this.logOut = function logOut() {
-  	this.userData = {};
-  };
-});
+    this.getEmail = function getEmail() {
+      return this.userData.email;
+    };
+
+    this.logOut = function logOut() {
+      this.userData = {};
+    };
+  });

@@ -4,24 +4,24 @@ angular.module('main', [
   'ngCordova',
   'ui.router',
   // TODO: load other modules selected during generation
-])
-.config(function ($stateProvider, $urlRouterProvider) {
+  ])
+  .config(function($stateProvider, $urlRouterProvider) {
 
-  // ROUTING with ui.router
-  $urlRouterProvider.otherwise('/login');
-  $stateProvider
+    // ROUTING with ui.router
+    $urlRouterProvider.otherwise('/login');
+    $stateProvider
     // this state is placed in the <ion-nav-view> in the index.html
-    .state('login', {
-      url: '/login',
-      templateUrl: 'login/templates/login.html',
-      controller: 'LoginController as loginCtrl'
-    })
-    .state('home', {
-      url: '/home',
-      abstract: true,
-      templateUrl: 'home/templates/home.html',
-      controller: 'HomeController as homeCtrl'
-    })
+      .state('login', {
+        url: '/login',
+        templateUrl: 'login/templates/login.html',
+        controller: 'LoginController as loginCtrl'
+      })
+      .state('home', {
+        url: '/home',
+        abstract: true,
+        templateUrl: 'home/templates/home.html',
+        controller: 'HomeController as homeCtrl'
+      })
       .state('home.cards', {
         url: '/cards',
         views: {
@@ -49,12 +49,12 @@ angular.module('main', [
           }
         }
       })
-    .state('main', {
-      url: '/main',
-      abstract: true,
-      templateUrl: 'main/templates/menu.html',
-      controller: 'MenuCtrl as menu'
-    })
+      .state('main', {
+        url: '/main',
+        abstract: true,
+        templateUrl: 'main/templates/menu.html',
+        controller: 'MenuCtrl as menu'
+      })
       .state('main.list', {
         url: '/list',
         views: {
@@ -82,6 +82,6 @@ angular.module('main', [
           }
         }
       });
-}).config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-  $ionicConfigProvider.navBar.alignTitle('center');
-});
+  }).config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+    $ionicConfigProvider.navBar.alignTitle('center');
+  });
