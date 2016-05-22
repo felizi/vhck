@@ -44,7 +44,7 @@ angular.module('main', [
         url: '/user',
         views: {
           'pageContent': {
-            templateUrl: 'home/templates/user.html',
+            templateUrl: 'user/templates/user.html',
             controller: 'UserController as userCtrl'
           }
         }

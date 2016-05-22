@@ -3,7 +3,7 @@
 	'use strict';
 	angular.module('main')
 	.controller('UserController', function ($scope, $timeout, $http, Config, $state, Occurrence, 
-Events) {
+Events, UserService) {
 		var reputations = [{
 			"type": "LOST_AND_FOUND",
 			"attributes": {
@@ -29,6 +29,7 @@ Events) {
 		});
 
 		$scope.reputations = reputations;
+		$scope.name = UserService.getName();
 	});
 
 })();
