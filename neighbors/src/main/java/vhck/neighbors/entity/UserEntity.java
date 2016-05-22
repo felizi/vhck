@@ -1,7 +1,9 @@
 package vhck.neighbors.entity;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import vhck.neighbors.jersey.translator.constants.BasicConstants;
 import vhck.neighbors.utilities.Encryptor;
 
 @Entity
@@ -47,6 +50,14 @@ public class UserEntity implements Serializable {
 		this();
 		this.name = name;
 		this.email = email;
+	}
+
+	public Map<String, Object> toMap() {
+		Map<String, Object> map = new HashMap<>();
+		map.put(BasicConstants.ID, this.getId());
+		map.put(BasicConstants.NAME, this.getName());
+		map.put(BasicConstants.EMAIL, this.getEmail());
+		return map;
 	}
 
 	public Long getId() {
