@@ -31,6 +31,24 @@ angular.module('main', [
           }
         }
       })
+      .state('home.occurrence', {
+        url: '/occurrence',
+        views: {
+          'pageContent': {
+            templateUrl: 'home/templates/occurrence.html',
+            controller: 'OccurrenceController as occurrenceCtrl'
+          }
+        }
+      })
+      .state('home.events', {
+        url: '/events',
+        views: {
+          'pageContent': {
+            templateUrl: 'home/templates/events.html',
+            controller: 'EventsController as eventsCtrl'
+          }
+        }
+      })
       .state('home.leaveComment', {
         url: '/cards/leaveComment/:cardId/:cardType',
         views: {

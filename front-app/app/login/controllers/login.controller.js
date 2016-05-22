@@ -15,18 +15,17 @@ angular.module('main')
           email: 'samuel.kitazume@gmail.com'
         });
 
-        //$state.go('home.cards');
+        $state.go('home.cards');
 
         $http.post(Config.ENV.SERVER_URL + 'auth/login', $scope.user).then(
           function(data) {
             console.log('Login success!', data);
           },
           function(err) {
-            $ionicPopup.alert({
-              title: 'Don\'t eat that!',
-              template: 'It might taste good'
-            });
-            console.log('Error: ', err);
+            // $ionicPopup.alert({
+            //   title: 'Login error',
+            //   template: 'Username or password incorrect.'
+            // });
           }
         );
       }
