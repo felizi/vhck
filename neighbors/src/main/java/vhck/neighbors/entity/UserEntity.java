@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -42,7 +43,7 @@ public class UserEntity implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private List<UserBuildEntity> userBuild;
 
-	@OneToMany(mappedBy = "userOwner", fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy="members", fetch = FetchType.LAZY)
 	private List<ChannelEntity> channels;
 	
 	protected UserEntity() {

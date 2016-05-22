@@ -39,12 +39,6 @@ public class ChannelEntity implements Serializable {
 	@Column(name = "name", nullable = false, length = 255)
 	private String name;
 	
-//	@ManyToOne
-//	@JoinColumns({
-//		@JoinColumn(name = "id_user_owner", referencedColumnName = "id_user"),
-//		@JoinColumn(name = "id_build", referencedColumnName = "id_build")})
-//	private UserBuildEntity owner;
-	
 	@ManyToOne
     @JoinColumn(name = "id_user_owner", referencedColumnName = "id")
     private UserEntity userOwner;
@@ -54,10 +48,8 @@ public class ChannelEntity implements Serializable {
 	private BuildEntity build;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "channel_member", joinColumns = @JoinColumn(name = "channel_id"), 
-				inverseJoinColumns = {@JoinColumn(name = "id_user", referencedColumnName = "id_user"), 
-									  @JoinColumn(name= " id_build", referencedColumnName = "id_build")})
-	private List<UserBuildEntity> members;
+	@JoinTable(name = "channel_member", joinColumns = @JoinColumn(name="id_channel"), inverseJoinColumns = @JoinColumn(name="id_user"))
+	private List<UserEntity> members;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "privacy")
@@ -108,11 +100,11 @@ public class ChannelEntity implements Serializable {
 		this.build = build;
 	}
 
-	public List<UserBuildEntity> getMembers() {
+	public List<UserEntity> getMembers() {
 		return members;
 	}
 
-	public void setMembers(List<UserBuildEntity> members) {
+	public void setMembers(List<UserEntity> members) {
 		this.members = members;
 	}
 
