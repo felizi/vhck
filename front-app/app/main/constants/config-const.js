@@ -19,19 +19,4 @@ angular.module('main')
 .constant('Cards', {
   OCCURRENCE: 'OCCURRENCE',
   EVENTS: 'EVENTS'
-})
-.constant('Occurrence', {
-  LOST_AND_FOUND: 'Lost and found', 
-  MAINTENANCE: 'Maintenance'
-})
-.constant('Events', {
-  BARBECUE: 'Barbecue',
-  PARTY: 'Party',
-  FOOTBALL: 'Football',
-  BIKE: 'Bike'
-})
-.constant('Privacy', {
-  PUBLIC: 'PUBLIC',
-  CLOSED: 'CLOSED',
-  PRIVATE: 'PRIVATE'
 });
