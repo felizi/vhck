@@ -6,7 +6,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import vhck.neighbors.dao.EventDAO;
-import vhck.neighbors.entity.group.EventEntity;
+import vhck.neighbors.entity.EventEntity;
 
 @Stateless
 public class EventBO {

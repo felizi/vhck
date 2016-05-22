@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
-import vhck.neighbors.entity.group.ChannelEntity;
+import vhck.neighbors.entity.ChannelEntity;
 
 @Stateless
 public class ChannelDAO extends Persistence{

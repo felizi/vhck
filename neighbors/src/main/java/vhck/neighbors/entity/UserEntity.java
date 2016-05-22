@@ -4,13 +4,17 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "user")
@@ -26,12 +30,16 @@ public class UserEntity implements Serializable {
 	@Column(name = "name")
 	private String name;
 
+	@NotNull
 	@Column(name = "email", unique = true)
 	private String email;
 
 	@Column(name = "password")
 	private String password;
-
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<UserBuildEntity> userBuild;
+	
 	protected UserEntity() {
 	}
 
@@ -71,6 +79,14 @@ public class UserEntity implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = this.encriptarPassword(password);
+	}
+
+	public List<UserBuildEntity> getUserBuild() {
+		return userBuild;
+	}
+
+	public void setUserBuild(List<UserBuildEntity> userBuild) {
+		this.userBuild = userBuild;
 	}
 
 	public String encriptarPassword(String password) {

@@ -15,7 +15,7 @@ public class UserBO {
 	@Inject private UserDAO userDAO;
 	
 	public void include(UserEntity user) throws EmailAlreadyRegisteredException {
-		if(userDAO.findByEmail(user.getEmail()) != null) {
+		if(userDAO.findByEmail(user.getEmail()) == null) {
 			userDAO.include(user);
 		} else {
 			throw new EmailAlreadyRegisteredException();

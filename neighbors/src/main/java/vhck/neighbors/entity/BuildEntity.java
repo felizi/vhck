@@ -10,8 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -27,57 +27,75 @@ public class BuildEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private UserEntity owner;
-
-	@Column(name = "landlord")
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "build_landlord", joinColumns = { @JoinColumn(name = "build_id") }, inverseJoinColumns = { @JoinColumn(name = "landlord_id") })
-	private List<UserEntity> landlord;
-
 	@NotNull
 	@Size(min = 1, max = 255)
-	@Column(name = "NAME", nullable = false, length = 255)
+	@Column(name = "name", nullable = false, length = 255)
 	private String name;
 
-	private GeolocationEntity geolocation;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "build")
+    private List<UserBuildEntity> userBuild;
+
+	@ManyToOne
+    @JoinColumn(name = "id_user_owner", referencedColumnName = "id")
+    private UserEntity userOwner;
+	
+	public BuildEntity(){
+	}
 
 	public Long getId() {
 		return id;
-	}
-
-	public UserEntity getOwner() {
-		return owner;
-	}
-
-	public List<UserEntity> getLandlord() {
-		return landlord;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public GeolocationEntity getGeolocation() {
-		return geolocation;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public void setOwner(UserEntity owner) {
-		this.owner = owner;
-	}
-
-	public void setLandlord(List<UserEntity> landlord) {
-		this.landlord = landlord;
+	public String getName() {
+		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public void setGeolocation(GeolocationEntity geolocation) {
-		this.geolocation = geolocation;
+	public List<UserBuildEntity> getUserBuild() {
+		return userBuild;
+	}
+
+	public void setUserBuild(List<UserBuildEntity> userBuild) {
+		this.userBuild = userBuild;
+	}
+
+	public UserEntity getUserOwner() {
+		return userOwner;
+	}
+
+	public void setUserOwner(UserEntity userOwner) {
+		this.userOwner = userOwner;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BuildEntity other = (BuildEntity) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 }

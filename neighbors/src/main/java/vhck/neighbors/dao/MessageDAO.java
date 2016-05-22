@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
-import vhck.neighbors.entity.message.MessageEntity;
+import vhck.neighbors.entity.MessageEntity;
 
 @Stateless
 public class MessageDAO extends Persistence{

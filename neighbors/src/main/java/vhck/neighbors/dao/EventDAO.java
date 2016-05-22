@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
-import vhck.neighbors.entity.group.EventEntity;
+import vhck.neighbors.entity.EventEntity;
 
 @Stateless
 public class EventDAO extends Persistence{

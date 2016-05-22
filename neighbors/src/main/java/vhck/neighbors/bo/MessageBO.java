@@ -6,7 +6,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import vhck.neighbors.dao.MessageDAO;
-import vhck.neighbors.entity.message.MessageEntity;
+import vhck.neighbors.entity.MessageEntity;
 
 @Stateless
 public class MessageBO {

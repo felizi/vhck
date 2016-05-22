@@ -23,8 +23,7 @@ public class UserResource {
 	@Inject private UserBO userBO;
 	
 	@GET
-	@Path("users")
-	@Produces("application/xml")
+	@Produces(MediaType.APPLICATION_JSON)
 	public String users() {
 //		MessageEntity msg = new MessageEntity();
 //		msg.setSender(new EventEntity());
@@ -36,7 +35,6 @@ public class UserResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response cadastrarUsuario(String usuarioJson) {
 		UserEntity user = new Gson().fromJson(usuarioJson, UserEntity.class);
-		
 		try {
 			userBO.include(user);
 		} catch (EmailAlreadyRegisteredException e) {
@@ -55,4 +53,13 @@ public class UserResource {
 	public String login() {
 		return "Hello World !! - Jersey 2";
 	}*/
+	
+//	@Path("{idUsuario}")
+//	@GET
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public String buscarPorId(@PathParam("idUsuario") Long id) {
+//		UserEntity usuario = userBO.findById(id);
+//		String userJson = new Gson().toJson(usuario, UserEntity.class);
+//		return userJson;
+//	}
 }
