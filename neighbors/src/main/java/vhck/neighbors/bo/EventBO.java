@@ -1,12 +1,15 @@
 package vhck.neighbors.bo;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import vhck.neighbors.dao.EventDAO;
 import vhck.neighbors.entity.EventEntity;
+import vhck.neighbors.entity.UserEntity;
 
 @Stateless
 public class EventBO {
@@ -39,5 +42,15 @@ public class EventBO {
 	
 	public List<EventEntity> findAll() {
 		return eventDAO.findAll();
+	}
+	
+	public void flame(EventEntity event, UserEntity user) {
+		Set<UserEntity> flames = new HashSet<>();
+		flames.add(user);
+		if(event.getFlames() != null){
+			flames.addAll(event.getFlames());
+		}
+		event.setFlames(flames);
+		change(event);
 	}
 }
