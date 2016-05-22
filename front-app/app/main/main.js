@@ -32,11 +32,20 @@ angular.module('main', [
         }
       })
       .state('home.leaveComment', {
-        url: '/cards/leaveComment/:cardId/:cardType/:cardTitle',
+        url: '/cards/leaveComment/:cardId/:cardType',
         views: {
           'pageContent': {
             templateUrl: 'home/templates/leaveComment.html',
             controller: 'LeaveCommentController as leaveCommentCtrl'
+          }
+        }
+      })
+      .state('home.user', {
+        url: '/user',
+        views: {
+          'pageContent': {
+            templateUrl: 'home/templates/user.html',
+            controller: 'UserController as userCtrl'
           }
         }
       })

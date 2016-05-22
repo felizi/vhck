@@ -1,0 +1,78 @@
+<ion-view view-title="Me">
+  <ion-content class="padding">
+    <div style="overflow: hidden;"> <br />
+      <div style="width: 100%; text-align: center;">
+      	<img src="main/assets/images/user/125.jpg" width="125px" height="125px" style="margin-bottom: 5px;" /> <br />
+      	<span style="font-size: 25px;">Samuel Kitazume</span><br />
+      	<div class="padding">
+      		<span style="color: #aaa; margin-right: 8px;">Your profile is</span>
+      		<span>Super social</span>
+      	</div>
+      </div>
+      <div style="width: 100%;">
+      	<div style="width: 50%; text-align: center; float: left; padding: 10% 0;">
+      		<span style="font-size: 44px; margin-bottom: 5px;">15</span> <br />
+      		<span style="color: #aaa;">Level</span>
+      	</div>
+      	<div style="width: 50%; text-align: center; float: right; padding: 10% 0;">
+      		<span style="margin-bottom: 15px;">They like you</span> <br />
+      		<span style="color: #aaa;">Reputation</span>
+      	</div>
+      </div>
+    </div>
+    <div style="margin-top: 20px;">
+    	<div class="list">
+
+	    	<div style="width: 48%; float: left;" ng-repeat="reputation in reputations">
+				<div class="item item-divider" style="font-size: 11px;">
+					{{reputation.type}}
+				</div>
+
+				<div class="item" style="font-size: 11px;">
+					Interactions {{reputation.attributes.interactions}}<br />
+					Pokes {{reputation.attributes.pokes}}<br />
+					Pontuation {{reputation.attributes.pontuation}}
+				</a>
+		  	</div>
+
+		</div>
+
+
+    	<div ng-repeat="reputation in reputationsss" style="width: 48.5%; height: auto; border: 1px solid black; float: left; margin-bottom: 10px;">
+	        <div style="width: 100%; height: 125px; background-color: red;"></div>
+	        <div class="padding-left padding-right" style="padding-top: 5px; overflow: hidden;">
+	          <label style="font-size: 9px; float: left;">{{card.type}}</label>
+	          <label style="font-size: 9px; float: right;">{{card.views}} views</label>
+	        </div>
+	        <div class="padding-left padding-right" ng-click="showDetails(card.id, card.cardType, card.title)" style="padding-top: 8px; overflow: hidden;">
+	          <span>{{card.title}}</span>
+	        </div>
+	        <div style="padding-top: 20px; padding-bottom:5px; overflow: hidden; text-align: center;">
+
+	            <img src="main/assets/images/user/125.jpg" width="22px" height="22px" />
+	            <br />
+	            <span ng-if="card.flamed" style="font-size: 9px; color: yellow;">You flamed</span>
+	            <br ng-if="card.flamed"/>
+	            <span style="font-size: 9px;">{{card.flames}} flames</span>
+
+	        </div>
+	        <div style="text-align: center;">
+	          <span ng-if="card.comments.length > 2" style="font-size: 9px;">lots of comments</span>
+	          <div ng-repeat="comment in card.comments | limitTo: 2 | orderBy:'-commentAt'" class="padding" style=" height: auto; width: 100%; overflow: hidden; border-top: 1px solid #555; text-align: justify; line-height: normal;">
+
+	            <div class="padding-bottom" style="overflow: hidden;">
+	              <label style="font-size: 9px; float: left;">{{comment.user.name}}</label>
+	              <label style="font-size: 9px; float: right;">{{comment.commentAt}}</label>
+	            </div>
+
+	            <span style="font-size: 9px;">{{comment.comment}}</span>
+
+	          </div>
+	          <div class="padding-left padding-right" ng-click="showDetails(card.id, card.cardType, card.title)" style=" height: 30px; background-color: #ddd; overflow: hidden; border-top: 1px solid #555; text-align: center;">
+	            <span style="font-size: 9px;">+ leave your comment</span>
+	          </div>
+	        </div>
+	      </div>
+    </div>
+  </ion-content>
+</ion-view>

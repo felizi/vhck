@@ -14,6 +14,11 @@
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
       </ion-nav-buttons>
+      <ion-nav-buttons side="right" ng-show="false">
+        <button class="button button-icon button-clear round" ui-sref="home.user">
+          <img src="main/assets/images/user/125.jpg" width="34px" height="34px" />
+        </button>
+      </ion-nav-buttons>
     </ion-nav-bar>
 
     <!-- ROUTING INJECTED HERE: pageContent -->
@@ -32,11 +37,14 @@
     <!-- menu content -->
     <ion-content>
       <ion-list>
-        <ion-item menu-close>
-          Add event
+        <ion-item menu-close ui-sref="home.cards">
+          All things
         </ion-item>
         <ion-item menu-close>
-          Lost and found area
+          Occurrence
+        </ion-item>
+        <ion-item menu-close>
+          Events
         </ion-item>
         <ion-item menu-close ng-click="logOut()">
           Log out

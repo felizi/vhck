@@ -4,8 +4,8 @@
 	angular.module('main')
 	.controller('LeaveCommentController', function ($scope, $timeout, $http, Config, $state, $stateParams) {
 		//$scope.cardId = $stateParams.cardId;
-		//$scope.cardType = $stateParams.cardType;
-		$scope.cardTitle = $stateParams.cardTitle;
+
+		$scope.cardType = $stateParams.cardType === 'EVENTS' ? 'Events' : 'Occurrence';
 
 		var details = {
 			"id": 2,

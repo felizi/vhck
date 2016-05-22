@@ -1,9 +1,4 @@
 <ion-view view-title="My neighborhood">
-  <ion-nav-buttons side="right" ng-show="false">
-    <button class="button button-icon button-clear round">
-      <img src="main/assets/images/user/125.jpg" width="34px" height="34px" />
-    </button>
-  </ion-nav-buttons>
 
   <ion-content class="padding">
     <div>
@@ -14,7 +9,7 @@
           <label style="font-size: 9px; float: left;">{{card.type}}</label>
           <label style="font-size: 9px; float: right;">{{card.views}} views</label>
         </div>
-        <div class="padding-left padding-right" ng-click="showDetails(card.id, card.cardType, card.title)" style="padding-top: 8px; overflow: hidden;">
+        <div class="padding-left padding-right" ng-click="showDetails(card.id, card.cardType)" style="padding-top: 8px; overflow: hidden;">
           <span>{{card.title}}</span>
         </div>
         <div style="padding-top: 20px; padding-bottom:5px; overflow: hidden; text-align: center;">
@@ -38,7 +33,7 @@
             <span style="font-size: 9px;">{{comment.comment}}</span>
 
           </div>
-          <div class="padding-left padding-right" ng-click="showDetails(card.id, card.cardType, card.title)" style=" height: 30px; background-color: #ddd; overflow: hidden; border-top: 1px solid #555; text-align: center;">
+          <div class="padding-left padding-right" ng-click="showDetails(card.id, card.cardType)" style=" height: 30px; background-color: #ddd; overflow: hidden; border-top: 1px solid #555; text-align: center;">
             <span style="font-size: 9px;">+ leave your comment</span>
           </div>
         </div>

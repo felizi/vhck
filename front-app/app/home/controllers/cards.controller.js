@@ -2,12 +2,13 @@
 
 	'use strict';
 	angular.module('main')
-	.controller('CardsController', function ($scope, $timeout, $http, Config, Cards, $state) {
+	.controller('CardsController', function ($scope, $timeout, $http, Config, Cards, Occurrence, 
+Events, $state) {
 		var occurrence = [{
 			"id": 1,
 			"title": "Blue towel at the swimming pool",
 			"flames": 30,
-			"type": "Lost and found", //pegar de um ENUM?
+			"type": "LOST_AND_FOUND", //pegar de um ENUM?
 			"date": 1463883950710,
 			"dateUpdate": 4,
 			"views": 131,
@@ -19,7 +20,7 @@
 			"id": 1,
 			"title": "Summer soccer match against Bryan Killigan",
 			"flames": 40, //39 + 1?
-			"type": "Event", //pegar de um ENUM?
+			"type": "FOOTBALL", //pegar de um ENUM?
 			"date": 1463883950710,
 			"dateUpdate": 3,
 			"views": 132,
@@ -41,7 +42,7 @@
 			"id": 2,
 			"title": "Summer BBQ",
 			"flames": 40,
-			"type": "Event", //pegar de um ENUM?
+			"type": "BARBECUE", //pegar de um ENUM?
 			"date": 1463883950710,
 			"dateUpdate": 2,
 			"views": 133,
@@ -68,20 +69,21 @@
 		}];
 
 		occurrence.map(function(item) {
+			item.type = Occurrence[item.type];
 			item.cardType = Cards.OCCURRENCE;
 		});
 
 		events.map(function(item) {
+			item.type = Events[item.type];
 			item.cardType = Cards.EVENTS;
 		});
 
 		$scope.cards = occurrence.concat(events);
 
-		$scope.showDetails = function(cardId, cardType, cardTitle) {
+		$scope.showDetails = function(cardId, cardType) {
 			$state.go('home.leaveComment', {
 				cardId: cardId,
-				cardType: cardType,
-				cardTitle: cardTitle
+				cardType: cardType
 			});
 		};
 	});
