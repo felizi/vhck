@@ -1,3 +1,5 @@
+![alt tag](https://raw.githubusercontent.com/felizi/vhck/master/design/splash_screen.jpg)
+
 ## Inspiration
 The iniciative is from Mike Moll and it's about creating an entire community of groups of people that live in the same building to share a social life and common feelings. We loved it at the very beginning. We want to change the world in a good way, heating up the cold part of the world. We have a dream where people care about each other, where they left their differences and embrace the human being. We think that technology is amazing but somehow tears us apart, but the same technology can promote the oposite. So we are a geek group-of-4 that shares
 passion for tech and a deeper desire to be meaningful for our families, friends, society and world.
