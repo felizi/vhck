@@ -52,9 +52,15 @@ public class ChannelEntity implements Serializable {
 	@OneToMany(mappedBy = "channelRecipient", fetch = FetchType.LAZY)
 	private List<MessageRoutesEntity> messagesRoutes;
 	
-	public ChannelEntity() {
+	protected ChannelEntity() {
+		this.privacy = PrivacyEnum.PUBLIC;
 	}
 
+	public ChannelEntity(String name, UserEntity owner) {
+		this.name = name;
+		this.owner = owner;
+	}
+	
 	public Long getId() {
 		return id;
 	}

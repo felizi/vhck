@@ -58,4 +58,16 @@ public class UserDAO extends Persistence{
 		
 		return q.getResultList();
 	}
+	
+	public List<UserEntity> findAllUserLandlordOfBuild(BuildEntity buildEntity) {
+		Query q = em.createQuery("SELECT ube.user FROM UserBuildEntity ube "
+				+ "WHERE ube.build = :pBuild "
+				+ "AND ube.landlord = :pLandLord ");
+		
+		q.setParameter("pBuild", buildEntity);
+		q.setParameter("pLandLord", Boolean.TRUE);
+		
+		return q.getResultList();
+	}
 }
+
