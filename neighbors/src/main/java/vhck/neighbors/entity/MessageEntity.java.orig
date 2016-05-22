@@ -32,13 +32,40 @@ public class MessageEntity implements Serializable {
 	private Long id;
 
 	@Temporal(TemporalType.TIMESTAMP)
+<<<<<<< HEAD
+	@Column(name = "dateTime")
+	private Date dateTime;
+	
+=======
 	@Column(name = "date_creation")
 	private Date dateCreation;
 
+	@ManyToOne
+	@JoinColumns({ @JoinColumn(name = "id_user", referencedColumnName = "id_user"), @JoinColumn(name = "id_build", referencedColumnName = "id_build") })
+	private UserBuildEntity sender;
+
+	@ManyToOne
+	@JoinColumn(name = "id_event", referencedColumnName = "id")
+	private EventEntity eventRecipient;
+
+	@ManyToOne
+	@JoinColumn(name = "id_channel", referencedColumnName = "id")
+	private ChannelEntity channelRecipient;
+
+>>>>>>> 90c1d6f1d5bd3038e7691e6e5bdb32eecf71edf4
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	@Column(name = "message", length = 4000)
 	private String message;
+<<<<<<< HEAD
+	
+	@OneToOne
+    @PrimaryKeyJoinColumn
+    private MessageRoutesEntity messageRoutes;
+	
+	public MessageEntity() {
+		this.dateTime = new Date();
+=======
 
 	protected MessageEntity() {
 	}
@@ -47,19 +74,15 @@ public class MessageEntity implements Serializable {
 		this();
 		this.sender = sender;
 		this.eventRecipient = recipient;
-	@Lob
-	@Basic(fetch = FetchType.LAZY)
-	@Column(name="description", length = 4000)
-	private String message;
-	
-	@OneToOne
-    @PrimaryKeyJoinColumn
-    private MessageRoutesEntity messageRoutes;
-	
-	public MessageEntity() {
-		this.dateTime = new Date();
 	}
-	
+
+	public MessageEntity(UserBuildEntity sender, ChannelEntity recipient) {
+		this();
+		this.sender = sender;
+		this.channelRecipient = recipient;
+>>>>>>> 90c1d6f1d5bd3038e7691e6e5bdb32eecf71edf4
+	}
+
 	public Long getId() {
 		return id;
 	}

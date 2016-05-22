@@ -35,11 +35,12 @@ public class UserEntity implements Serializable {
 
 	@Column(name = "password")
 	private String password;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<UserBuildEntity> userBuild;
-	
+	private List<UserBuildEntity> userBuild;
+
 	protected UserEntity() {
+		super();
 	}
 
 	public UserEntity(String name, String email) {

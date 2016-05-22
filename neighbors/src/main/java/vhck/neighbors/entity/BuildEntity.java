@@ -33,13 +33,14 @@ public class BuildEntity implements Serializable {
 	private String name;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "build")
-    private List<UserBuildEntity> userBuild;
+	private List<UserBuildEntity> userBuild;
 
 	@ManyToOne
-    @JoinColumn(name = "id_user_owner", referencedColumnName = "id")
-    private UserEntity userOwner;
-	
-	public BuildEntity(){
+	@JoinColumn(name = "id_user_owner", referencedColumnName = "id")
+	private UserEntity userOwner;
+
+	public BuildEntity() {
+		super();
 	}
 
 	public Long getId() {
