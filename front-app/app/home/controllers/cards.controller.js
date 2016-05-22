@@ -1,82 +1,66 @@
 'use strict';
 angular.module('main')
   .controller('CardsController', function($scope, $timeout, $http, Config, Cards, Occurrence,
-    Events, $state) {
-    var occurrence = [{
-      'id': 1,
-      'title': 'Blue towel at the swimming pool',
-      'flames': 30,
-      'type': 'LOST_AND_FOUND', //pegar de um ENUM?
-      'date': 1463883950710,
-      'dateUpdate': 4,
-      'views': 131,
-      'flamed': false,
-      'comments': []
-    }];
+    Events, $state, $ionicPopup) {
+    //Sorry about that... Less time :'(
+    var aOccurrence = [],
+        aEvents = [],
+        bOccurrence = false,
+        bEvents = false;
 
-    var events = [{
-      'id': 1,
-      'title': 'Summer soccer match against Bryan Killigan',
-      'flames': 40, //39 + 1?
-      'type': 'FOOTBALL', //pegar de um ENUM?
-      'date': 1463883950710,
-      'dateUpdate': 3,
-      'views': 132,
-      'flamed': true,
-      'comments': [{
-        'user': {
-          'name': 'Mike Moll'
-        },
-        'commentAt': 1,
-        'comment': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. 1'
-      }, {
-        'user': {
-          'name': 'Daniel Felizi'
-        },
-        'commentAt': 2,
-        'comment': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. 2'
-      }]
-    }, {
-      'id': 2,
-      'title': 'Summer BBQ',
-      'flames': 40,
-      'type': 'BARBECUE', //pegar de um ENUM?
-      'date': 1463883950710,
-      'dateUpdate': 2,
-      'views': 133,
-      'flamed': true,
-      'comments': [{
-        'user': {
-          'name': 'Augusto Marques'
-        },
-        'commentAt': 3,
-        'comment': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. 3'
-      }, {
-        'user': {
-          'name': 'Helder Traci'
-        },
-        'commentAt': 4,
-        'comment': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. 4'
-      }, {
-        'user': {
-          'name': 'Samuel Kitazume'
-        },
-        'commentAt': 5,
-        'comment': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. 5'
-      }]
-    }];
+    $scope.cards = [];
 
-    occurrence.map(function(item) {
-      item.type = Occurrence[item.type];
-      item.cardType = Cards.OCCURRENCE;
-    });
+    $http.get(Config.ENV.SERVER_URL + 'occurrence').then(
+      function(res) {
+        var data = res.data;
+        var occurrence = data;
 
-    events.map(function(item) {
-      item.type = Events[item.type];
-      item.cardType = Cards.EVENTS;
-    });
+        occurrence.map(function(item) {
+          item.type = Occurrence[item.type];
+          item.cardType = Cards.OCCURRENCE;
+        });
 
-    $scope.cards = occurrence.concat(events);
+        aOccurrence = occurrence;
+        bOccurrence = true;
+        occurrenceAndEvents();
+      },
+      function(err) {
+        $ionicPopup.alert({
+          title: 'Getting occurrences error',
+          okType: 'button-calm',
+          template: 'Sorry, something get wrong! :('
+        });
+      }
+    );
+
+    $http.get(Config.ENV.SERVER_URL + 'event').then(
+      function(res) {
+        var data = res.data;
+        var events = data;
+
+        events.map(function(item) {
+          item.type = Events[item.type];
+          item.cardType = Cards.EVENTS;
+        });
+
+        aEvents = events;
+        bEvents = true;
+        occurrenceAndEvents();
+      },
+      function(err) {
+        $ionicPopup.alert({
+          title: 'Getting occurrences error',
+          okType: 'button-calm',
+          template: 'Sorry, something get wrong! :('
+        });
+      }
+    );
+
+    function occurrenceAndEvents(itens) {
+      if (bOccurrence && bEvents) {
+        $scope.cards = aOccurrence.concat(aEvents);
+      }
+    }
 
     $scope.showDetails = function(cardId, cardType) {
       $state.go('home.leaveComment', {

@@ -2,19 +2,21 @@
 angular.module('main')
   .controller('LoginContentController', function($scope, $timeout, $http, Config, $state, UserService, $ionicPopup) {
     $scope.user = {
-      username: '',
+      email: '',
       password: ''
     };
 
     var authUser = function authUser() {
-      if ($scope.user.username && $scope.user.password) {
+      if ($scope.user.email && $scope.user.password) {
         $http.post(Config.ENV.SERVER_URL + 'auth/login', $scope.user).then(
-          function(data) {
+          function(res) {
+            var data = res.data;
+
             UserService.setUserData(data);
             $state.go('login.chooseBuilding');
 
             $scope.user = {
-              username: '',
+              email: '',
               password: ''
             };
           },
@@ -22,7 +24,7 @@ angular.module('main')
             $ionicPopup.alert({
               title: 'Login error',
               okType: 'button-calm',
-              template: 'Username or password incorrect.'
+              template: 'Email or password incorrect.'
             });
           }
         );

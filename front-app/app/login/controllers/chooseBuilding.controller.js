@@ -1,22 +1,26 @@
 'use strict';
 angular.module('main')
   .controller('ChooseBuildingController', function($scope, $timeout, $http, Config, $state, UserService, $ionicPopup) {
-    var buildings = [{
-      id: 1,
-      name: 'Building 1'
-    }, {
-      id: 2,
-      name: 'Building 2'
-    }, {
-      id: 3,
-      name: 'Building 3'
-    }];
+    $scope.buildings = [];
 
-    if (buildings.length > 1) {
-      $scope.buildings = buildings;
-    } else {
-      UserService.setBuilding(buildings[0]);
-    }
+    $http.get(Config.ENV.SERVER_URL + 'building').then(
+      function(res) {
+        var data = res.data;
+
+        if (data.length > 1) {
+          $scope.buildings = data;
+        } else {
+          UserService.setBuilding(data[0]);
+        }
+      },
+      function(err) {
+        $ionicPopup.alert({
+          title: 'Getting buildings error',
+          okType: 'button-calm',
+          template: 'Sorry, something get wrong! :('
+        });
+      }
+    );
 
     $scope.selectBuilding = function selectBuilding() {
       if ($scope.building) {

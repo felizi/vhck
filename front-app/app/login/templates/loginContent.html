@@ -1,9 +1,9 @@
-<form ng-submit="authUser()" style="background: #f0f0f0;">
+<form ng-submit="authUser()">
   <div class="list padding">
-    <label class="item item-input" style="background: #f0f0f0;">
-      <input type="text" placeholder="Username" ng-model="user.username">
+    <label class="item item-input">
+      <input type="text" placeholder="Email" ng-model="user.email">
     </label>
-    <label class="item item-input" style="background: #f0f0f0;">
+    <label class="item item-input">
       <input type="password" placeholder="Password" ng-model="user.password">
     </label>
   </div>
@@ -12,7 +12,7 @@
       Sign in
     </button>
   </div>
-  <div class="list padding" style="background: #f0f0f0;">
+  <div class="list padding">
     <a href="#/register" class="btn btn-default assertive">Oh, I forgot!</a>
     <a href="#/register" class="btn btn-default assertive">Sign up</a>
   </div>

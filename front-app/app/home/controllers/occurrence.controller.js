@@ -1,24 +1,28 @@
 'use strict';
 angular.module('main')
-  .controller('OccurrenceController', function($scope, $timeout, $http, Config, Cards, Occurrence, $state) {
-    var occurrences = [{
-      'id': 1,
-      'title': 'Blue towel at the swimming pool',
-      'flames': 30,
-      'type': 'LOST_AND_FOUND', //pegar de um ENUM?
-      'date': 1463883950710,
-      'dateUpdate': 4,
-      'views': 131,
-      'flamed': false,
-      'comments': []
-    }];
+  .controller('OccurrenceController', function($scope, $timeout, $http, Config, Cards, Occurrence, $state, $ionicPopup) {
+    $scope.occurrences = [];
 
-    occurrences.map(function(item) {
-      item.type = Occurrence[item.type];
-      item.cardType = Cards.OCCURRENCE;
-    });
+    $http.get(Config.ENV.SERVER_URL + 'occurrence').then(
+      function(res) {
+        var data = res.data;
+        var occurrences = data;
 
-    $scope.occurrences = occurrences;
+        occurrences.map(function(item) {
+          item.type = Occurrence[item.type];
+          item.cardType = Cards.OCCURRENCE;
+        });
+
+        $scope.occurrences = occurrences;
+      },
+      function(err) {
+        $ionicPopup.alert({
+          title: 'Getting occurrences error',
+          okType: 'button-calm',
+          template: 'Sorry, something get wrong! :('
+        });
+      }
+    );
 
     $scope.showDetails = function(occurrenceId, occurrenceType) {
       $state.go('home.leaveComment', {
