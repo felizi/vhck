@@ -3,6 +3,7 @@ package vhck.neighbors.dao;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 import vhck.neighbors.entity.OccurrenceEntity;
 
@@ -36,5 +37,13 @@ public class OccurrenceDAO extends Persistence {
 	@SuppressWarnings("unchecked")
 	public List<OccurrenceEntity> findAll() {
 		return em.createQuery("FROM OccurrenceEntity oe").getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<OccurrenceEntity> findByBuilding(Long buildingId) {
+		Query q = em.createQuery("FROM OccurrenceEntity oe WHERE oe.build.id = :buildingId");
+		q.setParameter("buildingId", buildingId);
+
+		return q.getResultList();
 	}
 }

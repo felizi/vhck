@@ -17,8 +17,8 @@ import com.google.gson.Gson;
 import vhck.neighbors.bo.BuildBO;
 import vhck.neighbors.jersey.translator.BuildingTranslator;
 
-@Path("buildings")
-public class BuildingsResource {
+@Path("building")
+public class BuildingResource {
 
 	@Inject
 	private BuildBO buildingBO;

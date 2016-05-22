@@ -45,6 +45,10 @@ public class OccurrenceBO {
 		return occurrenceDAO.findAll();
 	}
 	
+	public List<OccurrenceEntity> findByBuilding(Long idBuilding) {
+		return occurrenceDAO.findByBuilding(idBuilding);
+	}
+	
 	public void flame(OccurrenceEntity occurrence, UserEntity user) {
 		Set<UserEntity> flames = new HashSet<>();
 		flames.add(user);

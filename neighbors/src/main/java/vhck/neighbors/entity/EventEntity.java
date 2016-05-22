@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -74,6 +75,10 @@ public class EventEntity implements Serializable {
 
 	@OneToMany(mappedBy = "eventRecipient", fetch = FetchType.LAZY)
 	private List<MessageRoutesEntity> messagesRoutes;
+
+	@ManyToOne
+	@JoinColumn(name = "id_build", referencedColumnName = "id")
+	private BuildEntity build;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_flame_event", joinColumns = { @JoinColumn(name = "event_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
@@ -169,6 +174,14 @@ public class EventEntity implements Serializable {
 
 	public void setFlames(Set<UserEntity> flames) {
 		this.flames = flames;
+	}
+
+	public BuildEntity getBuild() {
+		return build;
+	}
+
+	public void setBuild(BuildEntity build) {
+		this.build = build;
 	}
 
 	@Override
