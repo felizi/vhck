@@ -14,7 +14,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -62,6 +64,11 @@ public class OccurrenceEntity implements Serializable {
 
 	@OneToMany(mappedBy = "eventRecipient", fetch = FetchType.LAZY)
 	private List<MessageEntity> messages;
+
+	@Column(name = "flame")
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "occurrence_flame", joinColumns = { @JoinColumn(name = "occurrence_id") }, inverseJoinColumns = { @JoinColumn(name = "flame_id") })
+	private List<FlameEntity> flames;
 
 	public OccurrenceEntity() {
 	}
@@ -116,6 +123,30 @@ public class OccurrenceEntity implements Serializable {
 
 	public void setCreation(Date creation) {
 		this.creation = creation;
+	}
+
+	public OccurrenceTypeEnum getOccurrenceType() {
+		return occurrenceType;
+	}
+
+	public Date getUpdate() {
+		return update;
+	}
+
+	public List<FlameEntity> getFlames() {
+		return flames;
+	}
+
+	public void setOccurrenceType(OccurrenceTypeEnum occurrenceType) {
+		this.occurrenceType = occurrenceType;
+	}
+
+	public void setUpdate(Date update) {
+		this.update = update;
+	}
+
+	public void setFlames(List<FlameEntity> flames) {
+		this.flames = flames;
 	}
 
 	@Override

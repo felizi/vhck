@@ -37,7 +37,7 @@ public class EventEntity implements Serializable {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "event")
 	private EventTypeEnum eventType;
@@ -73,6 +73,11 @@ public class EventEntity implements Serializable {
 
 	@OneToMany(mappedBy = "eventRecipient", fetch = FetchType.LAZY)
 	private List<MessageEntity> messages;
+
+	@Column(name = "flame")
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "event_flame", joinColumns = { @JoinColumn(name = "event_id") }, inverseJoinColumns = { @JoinColumn(name = "flame_id") })
+	private List<FlameEntity> flames;
 
 	public EventEntity() {
 	}
@@ -147,6 +152,22 @@ public class EventEntity implements Serializable {
 
 	public void setMessages(List<MessageEntity> messages) {
 		this.messages = messages;
+	}
+
+	public EventTypeEnum getEventType() {
+		return eventType;
+	}
+
+	public List<FlameEntity> getFlames() {
+		return flames;
+	}
+
+	public void setEventType(EventTypeEnum eventType) {
+		this.eventType = eventType;
+	}
+
+	public void setFlames(List<FlameEntity> flames) {
+		this.flames = flames;
 	}
 
 	@Override
