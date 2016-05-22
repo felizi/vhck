@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="user_build")
+@Table(name = "user_build")
 @IdClass(UserBuildEntityId.class)
 public class UserBuildEntity implements Serializable {
 
@@ -21,15 +21,15 @@ public class UserBuildEntity implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_user", referencedColumnName = "id")
 	private UserEntity user;
-	
+
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "id_build", referencedColumnName = "id")
 	private BuildEntity build;
-	
-	@Column(nullable = false, columnDefinition = "TINYINT(1)")
+
+	@Column(name = "landlord", nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
 	private Boolean landlord;
-	
+
 	protected UserBuildEntity() {
 		this.landlord = Boolean.FALSE;
 	}
@@ -39,7 +39,7 @@ public class UserBuildEntity implements Serializable {
 		this.user = user;
 		this.build = build;
 	}
-	
+
 	public UserEntity getUser() {
 		return user;
 	}

@@ -1,7 +1,7 @@
 {
   "generator-m-ionic": {
     "answers": {
-      "appName": "social_network",
+      "appName": "neighbors",
       "appId": "com.social.network",
       "ionicCss": false,
       "bowerPackages": [
@@ -17,7 +17,7 @@
         "cordova-plugin-network-information",
         "cordova-plugin-statusbar"
       ],
-      "appModule": "social_network",
+      "appModule": "neighbors",
       "ecosystems": [
         "ionic-platform"
       ]

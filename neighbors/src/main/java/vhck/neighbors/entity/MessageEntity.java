@@ -8,15 +8,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 @Entity
 @Table(name = "message")
@@ -26,85 +27,41 @@ public class MessageEntity implements Serializable {
 
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(generator = "gen")
+	@GenericGenerator(name = "gen", strategy = "foreign", parameters = @Parameter(name = "property", value = "messageRoutes"))
 	private Long id;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "dateTime")
-	private Date dateTime;
+	@Column(name = "date_creation")
+	private Date dateCreation;
 
-	@ManyToOne
-	@JoinColumns({
-		@JoinColumn(name = "id_user", referencedColumnName = "id_user"),
-		@JoinColumn(name = "id_build", referencedColumnName = "id_build")})
-	private UserBuildEntity sender;
-	
-	@ManyToOne
-    @JoinColumn(name = "id_event", referencedColumnName = "id")
-	private EventEntity eventRecipient;
-	
-	@ManyToOne
-    @JoinColumn(name = "id_channel", referencedColumnName = "id")
-	private ChannelEntity channelRecipient;
-	
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
-	@Column(name="description", length = 4000)
+	@Column(name = "message", length = 4000)
 	private String message;
+
+	@OneToOne
+    @PrimaryKeyJoinColumn
+    private MessageRoutesEntity messageRoutes;
 	
-	protected MessageEntity() {
-	}
-	
-	public MessageEntity(UserBuildEntity sender, EventEntity recipient) {
-		this();
-		this.sender = sender;
-		this.eventRecipient = recipient; 
-	}
-	
-	public MessageEntity(UserBuildEntity sender, ChannelEntity recipient) {
-		this();
-		this.sender = sender;
-		this.channelRecipient = recipient; 
-	}
-	
-	public Long getId() {
-		return id;
+	public MessageEntity() {
+		this.dateCreation = new Date();
 	}
 
-	public Date getDateTime() {
-		return dateTime;
+	public Long getId() {
+		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public void setDateTime(Date dateTime) {
-		this.dateTime = dateTime;
+	public Date getDateCreation() {
+		return dateCreation;
 	}
 
-	public UserBuildEntity getSender() {
-		return sender;
-	}
-
-	public void setSender(UserBuildEntity sender) {
-		this.sender = sender;
-	}
-
-	public EventEntity getEventRecipient() {
-		return eventRecipient;
-	}
-
-	public void setEventRecipient(EventEntity eventRecipient) {
-		this.eventRecipient = eventRecipient;
-	}
-
-	public ChannelEntity getChannelRecipient() {
-		return channelRecipient;
-	}
-
-	public void setChannelRecipient(ChannelEntity channelRecipient) {
-		this.channelRecipient = channelRecipient;
+	public void setDateCreation(Date dateCreation) {
+		this.dateCreation = dateCreation;
 	}
 
 	public String getMessage() {
@@ -113,6 +70,14 @@ public class MessageEntity implements Serializable {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public MessageRoutesEntity getMessageRoutes() {
+		return messageRoutes;
+	}
+
+	public void setMessageRoutes(MessageRoutesEntity messageRoutes) {
+		this.messageRoutes = messageRoutes;
 	}
 
 	@Override

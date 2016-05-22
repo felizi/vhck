@@ -1,8 +1,10 @@
 package vhck.neighbors.entity;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -50,27 +52,67 @@ public class OccurrenceEntity implements Serializable {
 	private UserEntity owner;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "creation")
-	private Date creation;
+	@Column(name = "date_creation")
+	private Date dateCreation;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update")
-	private Date update;
+	@Column(name = "date_update")
+	private Date dateUpdate;
 
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	@Column(name = "description", length = 4000)
 	private String description;
 
-	@OneToMany(mappedBy = "eventRecipient", fetch = FetchType.LAZY)
-	private List<MessageEntity> messages;
+	@OneToMany(mappedBy = "occurrenceEntity", fetch = FetchType.LAZY)
+	private List<MessageRoutesEntity> messagesRoutes;
 
-	@Column(name = "flame")
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "occurrence_flame", joinColumns = { @JoinColumn(name = "occurrence_id") }, inverseJoinColumns = { @JoinColumn(name = "flame_id") })
-	private List<FlameEntity> flames;
+	@JoinTable(name = "user_flame_occurrence", joinColumns = { @JoinColumn(name = "occurrence_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
+	private Set<UserEntity> flames;
+
+	public OccurrenceEntity(OccurrenceTypeEnum occurrenceType, String name, UserEntity owner, String description) {
+		super();
+		this.occurrenceType = occurrenceType;
+		this.name = name;
+		this.owner = owner;
+		this.description = description;
+
+		Date date = Calendar.getInstance().getTime();
+		this.dateUpdate = date;
+		this.dateCreation = date;
+	}
+
+	public Date getDateCreation() {
+		return dateCreation;
+	}
+
+	public Date getDateUpdate() {
+		return dateUpdate;
+	}
+
+	public void setDateCreation(Date dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+
+	public void setDateUpdate(Date dateUpdate) {
+		this.dateUpdate = dateUpdate;
+	}
 
 	public OccurrenceEntity() {
+		super();
+	}
+
+	public Set<UserEntity> getFlames() {
+		return flames;
+	}
+
+	public void setFlames(Set<UserEntity> flames) {
+		this.flames = flames;
+	}
+
+	public void setOccurrenceType(OccurrenceTypeEnum occurrenceType) {
+		this.occurrenceType = occurrenceType;
 	}
 
 	public Long getId() {
@@ -105,48 +147,16 @@ public class OccurrenceEntity implements Serializable {
 		this.description = description;
 	}
 
-	public List<MessageEntity> getMessages() {
-		return messages;
+	public List<MessageRoutesEntity> getMessagesRoutes() {
+		return messagesRoutes;
 	}
 
-	public void setMessages(List<MessageEntity> messages) {
-		this.messages = messages;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public Date getCreation() {
-		return creation;
-	}
-
-	public void setCreation(Date creation) {
-		this.creation = creation;
+	public void setMessagesRoutes(List<MessageRoutesEntity> messagesRoutes) {
+		this.messagesRoutes = messagesRoutes;
 	}
 
 	public OccurrenceTypeEnum getOccurrenceType() {
 		return occurrenceType;
-	}
-
-	public Date getUpdate() {
-		return update;
-	}
-
-	public List<FlameEntity> getFlames() {
-		return flames;
-	}
-
-	public void setOccurrenceType(OccurrenceTypeEnum occurrenceType) {
-		this.occurrenceType = occurrenceType;
-	}
-
-	public void setUpdate(Date update) {
-		this.update = update;
-	}
-
-	public void setFlames(List<FlameEntity> flames) {
-		this.flames = flames;
 	}
 
 	@Override

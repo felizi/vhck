@@ -1,5 +1,5 @@
 'use strict';
-angular.module('social_network', [
+angular.module('neighbors', [
   // load your modules here
   'main', // starting with the main module
 ]);

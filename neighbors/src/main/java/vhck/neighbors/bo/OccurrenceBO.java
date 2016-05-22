@@ -1,12 +1,15 @@
 package vhck.neighbors.bo;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import vhck.neighbors.dao.OccurrenceDAO;
 import vhck.neighbors.entity.OccurrenceEntity;
+import vhck.neighbors.entity.UserEntity;
 
 @Stateless
 public class OccurrenceBO {
@@ -40,5 +43,15 @@ public class OccurrenceBO {
 
 	public List<OccurrenceEntity> findAll() {
 		return occurrenceDAO.findAll();
+	}
+	
+	public void flame(OccurrenceEntity occurrence, UserEntity user) {
+		Set<UserEntity> flames = new HashSet<>();
+		flames.add(user);
+		if(occurrence.getFlames() != null){
+			flames.addAll(occurrence.getFlames());
+		}
+		occurrence.setFlames(flames);
+		change(occurrence);
 	}
 }

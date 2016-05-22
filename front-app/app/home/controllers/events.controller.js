@@ -1,19 +1,6 @@
 'use strict';
 angular.module('main')
-  .controller('CardsController', function($scope, $timeout, $http, Config, Cards, Occurrence,
-    Events, $state) {
-    var occurrence = [{
-      'id': 1,
-      'title': 'Blue towel at the swimming pool',
-      'flames': 30,
-      'type': 'LOST_AND_FOUND', //pegar de um ENUM?
-      'date': 1463883950710,
-      'dateUpdate': 4,
-      'views': 131,
-      'flamed': false,
-      'comments': []
-    }];
-
+  .controller('EventsController', function($scope, $timeout, $http, Config, Cards, Events, $state) {
     var events = [{
       'id': 1,
       'title': 'Summer soccer match against Bryan Killigan',
@@ -66,22 +53,17 @@ angular.module('main')
       }]
     }];
 
-    occurrence.map(function(item) {
-      item.type = Occurrence[item.type];
-      item.cardType = Cards.OCCURRENCE;
-    });
-
     events.map(function(item) {
       item.type = Events[item.type];
       item.cardType = Cards.EVENTS;
     });
 
-    $scope.cards = occurrence.concat(events);
+    $scope.events = events;
 
-    $scope.showDetails = function(cardId, cardType) {
+    $scope.showDetails = function(eventId, eventType) {
       $state.go('home.leaveComment', {
-        cardId: cardId,
-        cardType: cardType
+        cardId: eventId,
+        cardType: eventType
       });
     };
   });
