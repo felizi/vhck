@@ -1,0 +1,17 @@
+<form ng-submit="selectBuilding()" style="background: #f0f0f0;">
+  <div class="list padding">
+    <label class="item item-input" style="background: #f0f0f0;">
+      <select ng-model="building" name="building">
+        <option value="">Select a building</option>
+        <option ng-repeat="building in buildings" value="{{building.id}}">
+          {{building.name}}
+        </option>
+      </select>
+    </label>
+  </div>
+  <div class="padding">
+    <button class="button button-block button-assertive">
+      Choose Building
+    </button>
+  </div>
+</form>
