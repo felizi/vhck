@@ -1,6 +1,6 @@
 ![alt tag](https://raw.githubusercontent.com/felizi/vhck/master/design/splash_screen.jpg)
 
-## Test login for app - [a link](https://github.com/felizi/vhck/raw/master/apk/neighbors.apk)
+## Test login for app - [APK](https://github.com/felizi/vhck/raw/master/apk/neighbors.apk)
 email: guest@neighborsapp.ca
 password: guest
 
