@@ -3,6 +3,7 @@ package vhck.neighbors.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -59,12 +60,12 @@ public class EventEntity implements Serializable {
 	private PrivacyEnum privacy;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "creation")
-	private Date creation;
+	@Column(name = "date_creation")
+	private Date dateCreation;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update")
-	private Date update;
+	@Column(name = "date_update")
+	private Date dateUpdate;
 
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
@@ -74,12 +75,28 @@ public class EventEntity implements Serializable {
 	@OneToMany(mappedBy = "eventRecipient", fetch = FetchType.LAZY)
 	private List<MessageEntity> messages;
 
-	@Column(name = "flame")
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "event_flame", joinColumns = { @JoinColumn(name = "event_id") }, inverseJoinColumns = { @JoinColumn(name = "flame_id") })
-	private List<FlameEntity> flames;
+	@JoinTable(name = "user_flame_event", joinColumns = { @JoinColumn(name = "event_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
+	private Set<UserEntity> flames;
 
 	public EventEntity() {
+		super();
+	}
+
+	public Date getDateCreation() {
+		return dateCreation;
+	}
+
+	public Date getDateUpdate() {
+		return dateUpdate;
+	}
+
+	public void setDateCreation(Date dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+
+	public void setDateUpdate(Date dateUpdate) {
+		this.dateUpdate = dateUpdate;
 	}
 
 	public Long getId() {
@@ -122,22 +139,6 @@ public class EventEntity implements Serializable {
 		this.privacy = privacy;
 	}
 
-	public Date getCreation() {
-		return creation;
-	}
-
-	public Date getUpdate() {
-		return update;
-	}
-
-	public void setCreation(Date creation) {
-		this.creation = creation;
-	}
-
-	public void setUpdate(Date update) {
-		this.update = update;
-	}
-
 	public String getDescription() {
 		return description;
 	}
@@ -158,7 +159,7 @@ public class EventEntity implements Serializable {
 		return eventType;
 	}
 
-	public List<FlameEntity> getFlames() {
+	public Set<UserEntity> getFlames() {
 		return flames;
 	}
 
@@ -166,7 +167,7 @@ public class EventEntity implements Serializable {
 		this.eventType = eventType;
 	}
 
-	public void setFlames(List<FlameEntity> flames) {
+	public void setFlames(Set<UserEntity> flames) {
 		this.flames = flames;
 	}
 

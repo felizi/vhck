@@ -30,57 +30,55 @@ public class MessageEntity implements Serializable {
 	private Long id;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "dateTime")
-	private Date dateTime;
+	@Column(name = "date_creation")
+	private Date dateCreation;
 
 	@ManyToOne
-	@JoinColumns({
-		@JoinColumn(name = "id_user", referencedColumnName = "id_user"),
-		@JoinColumn(name = "id_build", referencedColumnName = "id_build")})
+	@JoinColumns({ @JoinColumn(name = "id_user", referencedColumnName = "id_user"), @JoinColumn(name = "id_build", referencedColumnName = "id_build") })
 	private UserBuildEntity sender;
-	
+
 	@ManyToOne
-    @JoinColumn(name = "id_event", referencedColumnName = "id")
+	@JoinColumn(name = "id_event", referencedColumnName = "id")
 	private EventEntity eventRecipient;
-	
+
 	@ManyToOne
-    @JoinColumn(name = "id_channel", referencedColumnName = "id")
+	@JoinColumn(name = "id_channel", referencedColumnName = "id")
 	private ChannelEntity channelRecipient;
-	
+
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
-	@Column(name="description", length = 4000)
+	@Column(name = "message", length = 4000)
 	private String message;
-	
+
 	protected MessageEntity() {
 	}
-	
+
 	public MessageEntity(UserBuildEntity sender, EventEntity recipient) {
 		this();
 		this.sender = sender;
-		this.eventRecipient = recipient; 
+		this.eventRecipient = recipient;
 	}
-	
+
 	public MessageEntity(UserBuildEntity sender, ChannelEntity recipient) {
 		this();
 		this.sender = sender;
-		this.channelRecipient = recipient; 
+		this.channelRecipient = recipient;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
 
-	public Date getDateTime() {
-		return dateTime;
+	public Date getDateCreation() {
+		return dateCreation;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public void setDateTime(Date dateTime) {
-		this.dateTime = dateTime;
+	public void setDateCreation(Date dateCreation) {
+		this.dateCreation = dateCreation;
 	}
 
 	public UserBuildEntity getSender() {
